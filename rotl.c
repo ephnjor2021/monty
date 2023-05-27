@@ -1,24 +1,28 @@
 #include "monty.h"
-/**
- * rotl - rotates to the left
- * @stack: monty stack
- * @line_number: line number
- */
-void rotl(stack_t **stack, unsigned int line_number)
-{
-	stack_t *tmp;
-	int firstVal;
 
-	UNUSED(line_number);
-	tmp = *stack;
-	if (tmp)
-		firstVal = tmp->n;
-	while (tmp != NULL)
-	{
-		if (tmp->next)
-			tmp->n = tmp->next->n;
-		else
-			tmp->n = firstVal;
-		tmp = tmp->next;
-	}
+/**
+* rotl - rotates the first element of the stack
+* @stack: stack head
+* @line_count: line count
+*
+* Return: void
+*/
+void rotl(stack_t **stack, unsigned int line_count)
+{
+	stack_t *left;
+	stack_t *right;
+
+	(void) line_count;
+	if (!stack || !*stack || !(*stack)->next)
+		return;
+
+	left = right = *stack;
+
+	while (right->next) /* move the right pointer to the last node */
+		right = right->next;
+	right->next = left; /* a circle infinite linked list loop */
+	left->prev = right;
+	*stack = left->next; /* so we cut the link between the 0 and 1 element */
+	(*stack)->prev->next = NULL;
+	(*stack)->prev = NULL;
 }
