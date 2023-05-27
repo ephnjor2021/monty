@@ -1,28 +1,28 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
 #include "monty.h"
 
 /**
- * moddy - mods the top two elements of the stack.
- * @stack: the stack
- * @line_number: the current line number
+ * _mul - divides the next top value by the top value
+ * @stack: stack given by main
+ * @line_cnt: line counter
  *
  * Return: void
  */
-void moddy(stack_t **stack, unsigned int line_number)
+void _mul(stack_t **stack, unsigned int line_cnt)
 {
-	int modd;
+	int result;
 
-	if ((*stack) == NULL || (*stack)->next == NULL)
+	if (!stack || !*stack || !((*stack)->next))
 	{
-		fprintf(stdout, "L%d: can't mod, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_cnt);
 		exit(EXIT_FAILURE);
-	}
-	if ((*stack)->n == 0)
-	{
-		fprintf(stdout, "L%d: division by zero\n", line_number);
-		exit(EXIT_FAILURE);
+		return;
 	}
 
-	modd = (*stack)->next->n % (*stack)->n;
-	pop(stack, line_number);
-	(*stack)->n = modd;
+	result = ((*stack)->next->n) * ((*stack)->n);
+	pop(stack, line_cnt);/*For top node*/
+	(*stack)->n = result;
 }
