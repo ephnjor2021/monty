@@ -1,7 +1,5 @@
-# monty interpreter
-![alt text](https://github.com/betascribbles/monty/blob/main/images/monty.png?raw=true)
-
-
+# Monty Interpreter
+Welcome to the Monty Interpreter
 ## The Monty language
 <p>
 Monty 0.98 is a scripting language that is first compiled into Monty byte codes (Just like Python). It relies on a unique stack, with specific instructions to manipulate it. The goal of this project is to create an interpreter for Monty ByteCodes files.
@@ -51,6 +49,6 @@ julien@ubuntu:~/monty$
 ## Usage
 ```monty filename```
 
-## AUTHORS<br/>
-Ephraim<br/>
+## AUTHOR<br/>
+Ephraim Njoroge<br/>
 
