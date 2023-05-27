@@ -1,27 +1,34 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
 #include "monty.h"
 
 /**
- * divide - divides the top two elements of the stack.
- * @stack: the stack
- * @line_number: the current line number
+ * _div - divides the next top value by the top value
+ * @stack: stack given by main
+ * @line_cnt: line counter
  *
  * Return: void
  */
-void divide(stack_t **stack, unsigned int line_number)
+void _div(stack_t **stack, unsigned int line_cnt)
 {
-	int divs;
+	int result;
 
-	if ((*stack) == NULL || (*stack)->next == NULL)
+	if (!stack || !*stack || !((*stack)->next))
 	{
-		fprintf(stdout, "L%d: can't div, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't div, stack too short\n", line_cnt);
 		exit(EXIT_FAILURE);
 	}
-	if ((*stack)->n == 0)
+	if (((*stack)->n) == 0)
 	{
-		fprintf(stdout, "L%d: division by zero\n", line_number);
+		fprintf(stderr, "L%d: division by zero\n", line_cnt);
 		exit(EXIT_FAILURE);
+		;
+		return;
 	}
-	divs = (*stack)->next->n / (*stack)->n;
-	pop(stack, line_number);
-	(*stack)->n = divs;
+
+	result = ((*stack)->next->n) / ((*stack)->n);
+	pop(stack, line_cnt);/*For top node*/
+	(*stack)->n = result;
 }
